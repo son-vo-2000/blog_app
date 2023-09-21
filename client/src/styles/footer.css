@@ -1,0 +1,31 @@
+footer{
+    background-color: lightblue;
+    padding: 30px 0px;
+    width: 100%;
+}
+.footer__container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+}
+.footer__social{
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    margin-bottom: 20px;
+}
+
+.footer__social a .fa-brands{
+    font-size: 1.3rem;
+}
+.footer__content{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.footer__content a{
+    font-weight: 600;
+}

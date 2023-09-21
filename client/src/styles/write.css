@@ -1,0 +1,92 @@
+.write__page{
+  
+    display: flex;
+    gap: 20px;
+    flex: 1 1 auto;
+    min-height: 100vh;
+    margin-bottom: 100px;
+    padding: 30px 20px;
+}
+.write__content{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    width: 100%;
+}
+.write__content input{
+    padding: 10px;
+    font-size: 1rem;
+}
+.input__wrap{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: start;
+}
+.input__wrap h1{
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+.input__wrap input{
+    padding: 0px;
+    display: none;
+}
+
+.input__wrap label{
+    cursor: pointer;
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
+.write__category{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: start;
+}
+.write__category h1{
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+.cate__radio{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.radio__wrap{
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    justify-content: start;
+}
+.radio__wrap input{
+    padding: 0px;
+    margin: 0px;
+}
+.write__btns{
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+.write__btns button{
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    opacity: 0.8;
+    margin-top: 50px;
+}
+.write__btns button:hover{
+    opacity: 1;
+}
+.write__btns button:first-child{
+    background-color: white;
+    color: teal;
+    border: 1px solid teal;
+}
+
+.write__btns button:last-child{
+    background-color: teal;
+    color: white;
+    border: none;
+}
