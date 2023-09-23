@@ -13,7 +13,7 @@ const User_Posts = () => {
     if (!currentUser) return;
     const userId = currentUser.id;
     try {
-      const response = await axios.post("http://localhost:4000/api/users", {
+      const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/users`, {
         userId,
       });
 

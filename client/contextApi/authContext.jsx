@@ -10,14 +10,14 @@ export const AuthContextProvider = ({ children }) => {
 
   const login = async (input) => {
     const response = await axios.post(
-      "http://localhost:4000/api/auth/login",
+      `${process.env.REACT_APP_BACKEND_URL}/api/auth/login`,
       input
     );
     setCurrentUser(response.data);
   };
 
   const logout = async () => {
-    await axios.post("http://localhost:4000/api/auth/logout");
+    await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/auth/logout`);
     setCurrentUser(null);
   };
 

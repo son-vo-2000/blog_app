@@ -14,7 +14,7 @@ const Home = () => {
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:4000/api/posts${category}`
+        `${process.env.REACT_APP_BACKEND_URL}/api/posts${category}`
       );
       setPosts(response.data);
       setSearchPosts(response.data);

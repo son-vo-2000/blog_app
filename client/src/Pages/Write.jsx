@@ -16,7 +16,7 @@ const Write = () => {
     state === null ? "" : state.category
   );
   const { currentUser } = useContext(AuthContext);
-  const [error, setError] = useState("")
+  const [error, setError] = useState("");
 
   const navigate = useNavigate();
 
@@ -26,7 +26,7 @@ const Write = () => {
       formData.append("file", image);
 
       const response = await axios.post(
-        "http://localhost:4000/api/upload",
+        `${process.env.REACT_APP_BACKEND_URL}/api/upload`,
         formData
       );
       return response.data;
@@ -36,24 +36,27 @@ const Write = () => {
   };
   const handleCreateAndUpdate = async (e) => {
     e.preventDefault();
-    if (!currentUser) return; 
+    if (!currentUser) return;
     try {
       const imageUrl = await uploadImge();
-      if(!imageUrl){
+      if (!imageUrl) {
         setError("Don't forget your image");
         return;
       }
       state
         ? // Update post with id
-          await axios.put(`http://localhost:4000/api/posts/${state.id}`, {
-            title,
-            desc: value,
-            image: image ? imageUrl : "",
-            category,
-            userId: currentUser.id,
-          })
+          await axios.put(
+            `${process.env.REACT_APP_BACKEND_URL}/api/posts/${state.id}`,
+            {
+              title,
+              desc: value,
+              image: image ? imageUrl : "",
+              category,
+              userId: currentUser.id,
+            }
+          )
         : // Create new post
-          await axios.post(`http://localhost:4000/api/posts`, {
+          await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/posts`, {
             title,
             desc: value,
             category,
@@ -77,16 +80,16 @@ const Write = () => {
     setTitle(state === null ? "" : state.title);
     setImage(state === null ? null : state.image);
     setCategory(state === null ? "" : state.category);
-    setError("")
+    setError("");
   }, [state]);
 
-  const handleCancel = ( ) =>{
+  const handleCancel = () => {
     setValue("");
-    setTitle("")
+    setTitle("");
     setImage(null);
     setCategory("");
-    setError("")
-  }
+    setError("");
+  };
   return (
     <div className="write__page">
       <div className="write__content">

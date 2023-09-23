@@ -18,7 +18,7 @@ const Single = () => {
 
   const fetchData = async () => {
     try {
-      const res = await axios.get(`http://localhost:4000/api/posts/${postId}`);
+      const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/posts/${postId}`);
       setPost(res.data);
       console.log(res);
     } catch (error) {
@@ -32,7 +32,7 @@ const Single = () => {
 
   const handleDelete = async () => {
     try {
-      await axios.delete(`http://localhost:4000/api/posts/${postId}`);
+      await axios.delete(`${process.env.REACT_APP_BACKEND_URL}/api/posts/${postId}`);
       navigate("/");
     } catch (error) {
       console.error(error);

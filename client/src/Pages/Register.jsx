@@ -17,22 +17,24 @@ const Register = () => {
     e.preventDefault();
     setError("");
     try {
-      if(!input.username || !input.email || !input.password) {
+      if (!input.username || !input.email || !input.password) {
         setError("Error! All inputs required");
         return;
       }
-  
-      if(input.password.length < 5) {
-        setError("Weak password. Need atleast 5 characters")
+
+      if (input.password.length < 5) {
+        setError("Weak password. Need atleast 5 characters");
         return;
       }
 
-      await axios.post("http://localhost:4000/api/auth/register",input);
-      navigate("/login")
+      await axios.post(
+        `${process.env.REACT_APP_BACKEND_URL}/api/auth/register`,
+        input
+      );
+      navigate("/login");
     } catch (error) {
       setError(error.response.data);
     }
-
   };
 
   return (
@@ -75,10 +77,13 @@ const Register = () => {
         {error && <p className="form__error-message">{error}</p>}
         <span id="form__footer">
           <div>
-          You have an account? <Link to="/login">Login</Link>
+            You have an account? <Link to="/login">Login</Link>
           </div>
           <div>
-            Go back home <Link to="/"><i className="fa-solid fa-house"/></Link>
+            Go back home{" "}
+            <Link to="/">
+              <i className="fa-solid fa-house" />
+            </Link>
           </div>
         </span>
       </form>
