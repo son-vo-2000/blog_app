@@ -3,13 +3,10 @@ import dotenv from 'dotenv';
 
 dotenv.config()
 
+const urlDatabase = "mysql://root:LJ1ctgKMGVYCDJd2ziDn@containers-us-west-192.railway.app:6210/railway"
+
 export const db = mysql.createConnection(
-    {
-        host: process.env.MYSQL_HOST,
-        user: process.env.MYSQL_USER,
-        password: process.env.MYSQL_PASSWORD,
-        database: process.env.MYSQL_DATABASE
-    }
+urlDatabase
 )
 
 db.connect((err)=>{
