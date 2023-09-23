@@ -28,7 +28,7 @@ const Register = () => {
       }
 
       await axios.post(
-        `${process.env.REACT_APP_BACKEND_URL}/api/auth/register`,
+        `https://blogapp-production-7f9d.up.railway.app/api/auth/register`,
         input
       );
       navigate("/login");
