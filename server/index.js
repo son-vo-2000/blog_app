@@ -23,7 +23,13 @@ dotenv.config()
 
 app.use(express.json());
 app.use(cookieParser("jwtkey"));
-app.use(cors({ origin: "*" }));
+app.use(
+  cors({
+    origin: 'https://gregarious-klepon-c91d0b.netlify.app/', // Replace with your frontend URL
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    credentials: true, // Enable cookies and authentication headers
+  })
+);
 const PORT = 4000
 
 app.post('/api/upload', upload.single('file'), function(req,res){
