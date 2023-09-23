@@ -5,7 +5,7 @@ import userRouter from './routes/uersRoutes.js'
 import cors from 'cors';
 import cookieParser from "cookie-parser";
 import multer from 'multer';
-
+import dotenv from 'dotenv';
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -19,6 +19,7 @@ const storage = multer.diskStorage({
 const upload = multer({storage})
 
 const app = express();
+dotenv.config()
 
 app.use(express.json());
 app.use(cookieParser("jwtkey"));
@@ -41,6 +42,6 @@ app.use("/api/posts", postRouter);
 app.use("/api/users", userRouter);
 
 
-app.listen(PORT, ()=>{
+app.listen(process.env.PORT || PORT, ()=>{
     console.log("Connected")
 })
