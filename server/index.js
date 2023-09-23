@@ -25,12 +25,12 @@ app.use(express.json());
 app.use(cookieParser("jwtkey"));
 app.use(
   cors({
-    origin: 'https://gregarious-klepon-c91d0b.netlify.app/', // Replace with your frontend URL
+    origin: 'http://your-frontend-url.com', // Replace with your frontend URL
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true, // Enable cookies and authentication headers
   })
 );
-const PORT = 4000
+const PORT = "https://blogapp-production-7f9d.up.railway.app"
 
 app.post('/api/upload', upload.single('file'), function(req,res){
   if (!req.file) {
@@ -48,6 +48,6 @@ app.use("/api/posts", postRouter);
 app.use("/api/users", userRouter);
 
 
-app.listen(process.env.PORT || PORT, ()=>{
+app.listen(PORT, ()=>{
     console.log("Connected")
 })
