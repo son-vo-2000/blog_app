@@ -9,7 +9,7 @@ const SideMenu = ({ category, currentPostId }) => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `${process.env.REACT_APP_BACKEND_URL}/api/posts/?category=${category}`
+          `https://blogapp-production-7f9d.up.railway.app/api/posts/?category=${category}`
         );
         setPosts(response.data.filter((post) => post.id !== currentPostId));
       } catch (error) {
