@@ -26,7 +26,7 @@ const SideMenu = ({ category, currentPostId }) => {
         {posts.map((post) => (
           <li key={post.id} className="menu__item">
             <Link to={`/post/${post.id}`}>
-              <img src={`../uploadImages/${post.image}`} />
+              <img src={post.image} />
               <h1>{post.title}</h1>
             </Link>
           </li>

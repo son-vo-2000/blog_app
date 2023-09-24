@@ -14,7 +14,7 @@ const Home = () => {
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        `${process.env.REACT_APP_BACKEND_URL}/api/posts${category}`
+        `https://blogapp-production-7f9d.up.railway.app/api/posts${category}`
       );
       setPosts(response.data);
       setSearchPosts(response.data);

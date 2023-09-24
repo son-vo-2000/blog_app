@@ -7,7 +7,7 @@ const PostCard = ({post}) => {
     <article key={post.id}>
       <Link to={`/post/${post.id}`}>
         <div className="post__header">
-          <img src={`../uploadImages/${post.image}`} />
+          <img src={post.image} alt="Image"/>
         </div>
         <div className="post__content">
           <h1>{post.title}</h1>

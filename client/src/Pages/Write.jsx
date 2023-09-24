@@ -11,7 +11,7 @@ const Write = () => {
   const state = useLocation().state;
   const [value, setValue] = useState(state === null ? "" : state.desc);
   const [title, setTitle] = useState(state === null ? "" : state.title);
-  const [image, setImage] = useState(state === null ? null : state.image);
+  const [image, setImage] = useState(state === null ? "" : state.image);
   const [category, setCategory] = useState(
     state === null ? "" : state.category
   );
@@ -20,26 +20,11 @@ const Write = () => {
 
   const navigate = useNavigate();
 
-  const uploadImge = async () => {
-    try {
-      const formData = new FormData();
-      formData.append("file", image);
-
-      const response = await axios.post(
-        `https://blogapp-production-7f9d.up.railway.app/api/upload`,
-        formData
-      );
-      return response.data;
-    } catch (error) {
-      console.log(error);
-    }
-  };
   const handleCreateAndUpdate = async (e) => {
     e.preventDefault();
     if (!currentUser) return;
     try {
-      const imageUrl = await uploadImge();
-      if (!imageUrl) {
+      if (!image) {
         setError("Don't forget your image");
         return;
       }
@@ -50,20 +35,23 @@ const Write = () => {
             {
               title,
               desc: value,
-              image: image ? imageUrl : "",
+              image: image ? image : "",
               category,
               userId: currentUser.id,
             }
           )
         : // Create new post
-          await axios.post(`https://blogapp-production-7f9d.up.railway.app/api/posts`, {
-            title,
-            desc: value,
-            category,
-            image: image ? imageUrl : "",
-            date: moment(Date.now()).format("YYYY-MM-DD HH:mm:ss"),
-            userId: currentUser.id,
-          });
+          await axios.post(
+            `https://blogapp-production-7f9d.up.railway.app/api/posts`,
+            {
+              title,
+              desc: value,
+              category,
+              image,
+              date: moment(Date.now()).format("YYYY-MM-DD HH:mm:ss"),
+              userId: currentUser.id,
+            }
+          );
       navigate("/");
       return;
     } catch (error) {
@@ -104,12 +92,13 @@ const Write = () => {
         <div className="input__wrap">
           <h1>Image</h1>
           <label htmlFor="image">
-            <i className="fa-solid fa-arrow-up-from-bracket" /> Upload image
+            <i className="fa-solid fa-arrow-up-from-bracket" /> Upload image Url
+            address
           </label>
           <input
-            type="file"
+            type="text"
             id="image"
-            onChange={(e) => setImage(e.target.files[0])}
+            onChange={(event) => setImage(event.target.value)}
           />
         </div>
         <div className="write__category">
