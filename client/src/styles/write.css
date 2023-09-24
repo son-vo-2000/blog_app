@@ -28,8 +28,7 @@
     font-size: 1.2rem;
 }
 .input__wrap input{
-    padding: 0px;
-    display: none;
+    padding: 10px;
 }
 
 .input__wrap label{
