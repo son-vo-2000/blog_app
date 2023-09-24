@@ -56,7 +56,7 @@ const Single = () => {
 
         <div className="blog__author">
           <div className="author">
-            <img src={post.userImage} />
+            <img src={post.image} />
             <div className="author-infor">
               <span>{post.username}</span>
               <p>Posted {moment(post.date).fromNow()}</p>
