@@ -6,7 +6,7 @@ import cors from 'cors';
 import cookieParser from "cookie-parser";
 import multer from 'multer';
 import dotenv from 'dotenv';
-
+dotenv.config()
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, '../client/uploadImages')
@@ -19,14 +19,14 @@ const storage = multer.diskStorage({
 const upload = multer({storage})
 
 const app = express();
-dotenv.config()
 
-app.use(express.json());
-app.use(cookieParser("jwtkey"));
 app.use(cors({
   origin: '*'
 }));
-const PORT = 4000;
+app.use(express.json());
+app.use(cookieParser("jwtkey"));
+
+const port = process.env.PORT || 4000;
 
 app.post('/api/upload', upload.single('file'), function(req,res){
   if (!req.file) {
@@ -44,6 +44,6 @@ app.use("/api/posts", postRouter);
 app.use("/api/users", userRouter);
 
 
-app.listen(process.env.PORT || PORT, ()=>{
+app.listen(port, ()=>{
     console.log("Connected")
 })
