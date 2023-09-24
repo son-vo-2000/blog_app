@@ -10,24 +10,26 @@ export const AuthContextProvider = ({ children }) => {
 
   const login = async (input) => {
     const response = await axios.post(
-      `${process.env.REACT_APP_BACKEND_URL}/api/auth/login`,
+      `https://blogapp-production-7f9d.up.railway.app/api/auth/login`,
       input
     );
     setCurrentUser(response.data);
   };
 
   const logout = async () => {
-    await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/auth/logout`);
+    await axios.post(
+      `https://blogapp-production-7f9d.up.railway.app/api/auth/logout`
+    );
     setCurrentUser(null);
   };
 
-  useEffect(()=>{
+  useEffect(() => {
     localStorage.setItem("user", JSON.stringify(currentUser));
-  }, [currentUser])
+  }, [currentUser]);
 
-  return(
-    <AuthContext.Provider value={{currentUser, login, logout}} >
-        {children}
+  return (
+    <AuthContext.Provider value={{ currentUser, login, logout }}>
+      {children}
     </AuthContext.Provider>
-  )
+  );
 };

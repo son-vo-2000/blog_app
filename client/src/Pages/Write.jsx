@@ -26,7 +26,7 @@ const Write = () => {
       formData.append("file", image);
 
       const response = await axios.post(
-        `${process.env.REACT_APP_BACKEND_URL}/api/upload`,
+        `https://blogapp-production-7f9d.up.railway.app/api/upload`,
         formData
       );
       return response.data;
@@ -46,7 +46,7 @@ const Write = () => {
       state
         ? // Update post with id
           await axios.put(
-            `${process.env.REACT_APP_BACKEND_URL}/api/posts/${state.id}`,
+            `https://blogapp-production-7f9d.up.railway.app/api/posts/${state.id}`,
             {
               title,
               desc: value,
@@ -56,7 +56,7 @@ const Write = () => {
             }
           )
         : // Create new post
-          await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/posts`, {
+          await axios.post(`https://blogapp-production-7f9d.up.railway.app/api/posts`, {
             title,
             desc: value,
             category,

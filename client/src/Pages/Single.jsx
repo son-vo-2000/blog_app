@@ -18,7 +18,7 @@ const Single = () => {
 
   const fetchData = async () => {
     try {
-      const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/posts/${postId}`);
+      const res = await axios.get(`https://blogapp-production-7f9d.up.railway.app/api/posts/${postId}`);
       setPost(res.data);
       console.log(res);
     } catch (error) {
@@ -32,7 +32,7 @@ const Single = () => {
 
   const handleDelete = async () => {
     try {
-      await axios.delete(`${process.env.REACT_APP_BACKEND_URL}/api/posts/${postId}`);
+      await axios.delete(`https://blogapp-production-7f9d.up.railway.app/api/posts/${postId}`);
       navigate("/");
     } catch (error) {
       console.error(error);
