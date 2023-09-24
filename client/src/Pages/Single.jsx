@@ -18,7 +18,9 @@ const Single = () => {
 
   const fetchData = async () => {
     try {
-      const res = await axios.get(`https://blogapp-production-7f9d.up.railway.app/api/posts/${postId}`);
+      const res = await axios.get(
+        `https://blogapp-production-7f9d.up.railway.app/api/posts/${postId}`
+      );
       setPost(res.data);
       console.log(res);
     } catch (error) {
@@ -32,7 +34,9 @@ const Single = () => {
 
   const handleDelete = async () => {
     try {
-      await axios.delete(`https://blogapp-production-7f9d.up.railway.app/api/posts/${postId}`);
+      await axios.delete(
+        `https://blogapp-production-7f9d.up.railway.app/api/posts/${postId}`
+      );
       navigate("/");
     } catch (error) {
       console.error(error);
@@ -52,11 +56,10 @@ const Single = () => {
     <div className="blog">
       <article className="blog__item">
         <i onClick={goBackToPrev} className="fa-solid fa-arrow-left-long" />
-        <img className="blog__image" src={`../uploadImages/${post?.image}`} />
+        <img className="blog__image" src={post.image} />
 
         <div className="blog__author">
           <div className="author">
-            <img src={post.image} />
             <div className="author-infor">
               <span>{post.username}</span>
               <p>Posted {moment(post.date).fromNow()}</p>
