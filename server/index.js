@@ -23,14 +23,10 @@ dotenv.config()
 
 app.use(express.json());
 app.use(cookieParser("jwtkey"));
-app.use(
-  cors({
-    origin: 'http://your-frontend-url.com', // Replace with your frontend URL
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-    credentials: true, // Enable cookies and authentication headers
-  })
-);
-const PORT = "https://blogapp-production-7f9d.up.railway.app"
+app.use(cors({
+  origin: '*'
+}));
+const PORT = 4000;
 
 app.post('/api/upload', upload.single('file'), function(req,res){
   if (!req.file) {
@@ -48,6 +44,6 @@ app.use("/api/posts", postRouter);
 app.use("/api/users", userRouter);
 
 
-app.listen(PORT, ()=>{
+app.listen(process.env.PORT || PORT, ()=>{
     console.log("Connected")
 })
