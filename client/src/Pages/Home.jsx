@@ -10,9 +10,11 @@ const Home = () => {
   const category = useLocation().search;
   const [search, setSearch] = useState("");
   const [searchPosts, setSearchPosts] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const fetchData = async () => {
     try {
+      setIsLoading(true);
       const response = await axios.get(
         `https://blogapp-production-7f9d.up.railway.app/api/posts${category}`
       );
@@ -21,6 +23,8 @@ const Home = () => {
     } catch (error) {
       console.log(error);
     }
+
+    setIsLoading(false);
   };
 
   const filterPosts = () => {
@@ -54,11 +58,15 @@ const Home = () => {
           placeholder="Search..."
         />
       </div>
-      <div className="home__posts">
-        {searchPosts.map((post) => (
-          <PostCard post={post} />
-        ))}
-      </div>
+      {isLoading ? (
+        <div>Loading... Please wait</div>
+      ) : (
+        <div className="home__posts">
+          {searchPosts.map((post) => (
+            <PostCard post={post} />
+          ))}
+        </div>
+      )}
     </div>
   );
 };

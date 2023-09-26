@@ -6,11 +6,13 @@ import PostCard from "./PostCard";
 
 const User_Posts = () => {
   const [userPosts, setUserPosts] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const { currentUser } = useContext(AuthContext);
 
   const fetchData = async () => {
     if (!currentUser) return;
+    setIsLoading(true);
     const userId = currentUser.id;
     try {
       const response = await axios.post(
@@ -24,6 +26,8 @@ const User_Posts = () => {
     } catch (error) {
       console.error(error);
     }
+
+    setIsLoading(false)
   };
 
   useEffect(() => {
