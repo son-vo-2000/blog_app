@@ -13,9 +13,12 @@ const User_Posts = () => {
     if (!currentUser) return;
     const userId = currentUser.id;
     try {
-      const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/users`, {
-        userId,
-      });
+      const response = await axios.post(
+        `${process.env.REACT_APP_BACKEND_URL}/api/users`,
+        {
+          userId,
+        }
+      );
 
       setUserPosts(response.data);
     } catch (error) {
@@ -29,11 +32,15 @@ const User_Posts = () => {
 
   return (
     <div className="user_posts">
-      <div className="post__list">
-        {userPosts.map((post) => (
-          <PostCard post={post} />
-        ))}
-      </div>
+      {userPosts.length === 0 ? (
+        <div>Empty</div>
+      ) : (
+        <div className="post__list">
+          {userPosts.map((post) => (
+            <PostCard post={post} />
+          ))}
+        </div>
+      )}
     </div>
   );
 };
