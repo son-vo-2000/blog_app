@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 
 dotenv.config()
 
-const urlDatabase = "mysql://root:LJ1ctgKMGVYCDJd2ziDn@containers-us-west-192.railway.app:6210/railway"
+const urlDatabase = "mysql://root:CE4BhAH1Fc3ah53dgGcBcA4HdadgaH3A@roundhouse.proxy.rlwy.net:44455/railway"
 
 export const db = mysql.createConnection(
 urlDatabase
